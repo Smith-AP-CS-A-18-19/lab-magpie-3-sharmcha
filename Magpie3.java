@@ -34,9 +34,9 @@ public class Magpie3 {
 		else if (findKeyword(statement, "no") >= 0) {
 			response = "Why so negative?";
 		} else if (findKeyword(statement, "mother") >= 0
-				|| findKeyword(statement, "father") >= 0
-				|| findKeyword(statement, "sister") >= 0
-				|| findKeyword(statement, "brother") >= 0)
+				   || findKeyword(statement, "father") >= 0
+				   || findKeyword(statement, "sister") >= 0
+				   || findKeyword(statement, "brother") >= 0)
 		{
 			response = "Tell me more about your family.";
 		} else {
