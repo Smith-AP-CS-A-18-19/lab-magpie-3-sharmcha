@@ -13,11 +13,18 @@ public class MagpieRunner3 {
 	public static void main(String[] args) {
 		Magpie3 maggie = new Magpie3();
 
-		String response = maggie.getGreeting();
-
+		String response;
+		String statement = "";
+		boolean first = true;
 		do {
+			if (first) {
+				first = false;
+				response = maggie.getGreeting();
+			} else {
+				response = maggie.getResponse(statement);
+			}
 			System.out.println(response);
-			String statement = JOptionPane.showInputDialog(response);
+			statement = JOptionPane.showInputDialog(response);
 			System.out.println(statement);
 		} while (!statement.equals("Bye"));
 	}
