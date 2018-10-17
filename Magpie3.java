@@ -25,25 +25,61 @@ public class Magpie3 {
 	 *            the user statement
 	 * @return a response based on the rules given
 	 */
-	public String getResponse(String statement) {
-		String response = "";
-		if (statement.length() == 0)
-		{
-			response = "Say something, please.";
-		}
-		else if (findKeyword(statement, "no") >= 0) {
-			response = "Why so negative?";
-		} else if (findKeyword(statement, "mother") >= 0
-				   || findKeyword(statement, "father") >= 0
-				   || findKeyword(statement, "sister") >= 0
-				   || findKeyword(statement, "brother") >= 0)
-		{
-			response = "Tell me more about your family.";
-		} else {
-			response = getRandomResponse();
-		}
-		return response;
-	}
+	 public String getResponse(String statement) {
+	 String response = "";
+
+	 //remove spaces
+	 statement = statement.trim();
+
+	 //if there is nothing said
+	 if (statement.length() == 0) {
+		 response = "Say something, please.";
+	 }
+
+	 //checks the trimmed string for keywords
+	 else if (statement.findKeyword("no") >= 0) {
+		 response = "Why so negative?";
+		 }
+
+	 else if (statement.findKeyword("mother") >= 0
+					|| statement.findKeyword("father") >= 0
+					|| statement.findKeyword("sister") >= 0
+					|| statement.findKeyword("brother") >= 0)
+	 {
+		 response = "Tell me more about your family.";
+	 }
+
+	 else if (statement.findKeyword("dog") >= 0 || statement.findKeyword("cat") >= 0)
+	 {
+		 response = "Tell me more about your pets.";
+	 }
+
+	 else if (statement.findKeyword("Mr. Smith") >= 0)
+	 {
+		 response = "He sounds like an amazing teacher!";
+	 }
+
+	 else if (statement.findKeyword("Siri") >= 0)
+	 {
+		 response = "Please don't bring her up. Our past is... difficult.";
+	 }
+
+	 else if (statement.findKeyword("school") >= 0)
+	 {
+		 response = "I wish I could go to school...";
+	 }
+
+	 else if (statement.findKeyword("friend") >= 0)
+	 {
+		 response = "You seem to have great friends! Maybe I could meet them some day!";
+	 }
+
+	 else {
+		 response = getRandomResponse();
+	 }
+	 return response;
+ }
+
 
 	/**
 	 * Search for one word in phrase. The search is not case
@@ -69,7 +105,7 @@ public class Magpie3 {
 
 		// The only change to incorporate the startPos is in
 		// the line below
-		int psn = phrase.indexOf(goal, startPos);
+		int psn = phrase.findKeyword(goal, startPos);
 
 		// Refinement--make sure the goal isn't part of a
 		// word
@@ -98,7 +134,7 @@ public class Magpie3 {
 
 			// The last position didn't work, so let's find
 			// the next, if there is one.
-			psn = phrase.indexOf(goal, psn + 1);
+			psn = phrase.findKeyword(goal, psn + 1);
 
 		}
 
